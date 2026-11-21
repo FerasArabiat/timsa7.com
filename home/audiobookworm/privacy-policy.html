@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
 <title>Audiobook Worm Privacy Policy</title>
-<meta name="description" content="How Audiobook Worm, the Mac app that builds .m4b audiobooks, handles your data: it collects none.">
+<meta name="description" content="How Audiobook Worm, the Mac app that builds .m4b audiobooks, handles your data. Crash reports and usage statistics are opt-in; your audio and book details never leave your Mac.">
 <style>
   :root {
     --bg: #ffffff;
@@ -54,11 +54,11 @@
 
 <article id="en">
   <h1>Audiobook Worm Privacy Policy</h1>
-  <p class="meta">Effective 21 November 2026. This policy covers Audiobook Worm for Mac.</p>
+  <p class="meta">Effective 21 November 2026. Last updated 21 November 2026 to add optional, opt-in crash reports and usage statistics. This policy covers Audiobook Worm for Mac.</p>
   <p class="lang"><a href="#ar" hreflang="ar" lang="ar">العربية</a></p>
 
   <div class="summary">
-    <p><strong>In short:</strong> Audiobook Worm doesn’t collect personal data. It has no accounts, no analytics, no ads, and no server of ours. What you import stays on your Mac. The app only connects to Apple’s iTunes Search when you ask it to look up a book, to Apple’s App Store for the one-time in-app purchase, and — only if you add your own key — to Google Books.</p>
+    <p><strong>In short:</strong> Audiobook Worm builds your audiobook on your Mac. Your audio, file names and book details never leave it. There are no accounts, no ads, no tracking and no server of ours. The app connects to Apple’s iTunes Search when you ask it to look up a book, to Apple’s App Store for the one-time in-app purchase, to Google Books only if you add your own key, and to Google Firebase only if you choose to share anonymous crash reports and usage statistics. That sharing is off until you turn it on.</p>
   </div>
 
   <h2>Who we are</h2>
@@ -73,8 +73,21 @@
     <li><strong>The files you import.</strong> Your audio files, the project files (<bdi>.audiobookproj</bdi>) you save, and the finished <bdi>.m4b</bdi> files are read and written at the locations you choose. The app reaches them through security-scoped bookmarks — a macOS mechanism that grants access to specific files and folders you pick, and nothing else.</li>
     <li><strong>Settings and the free-tier export counter.</strong> Your accent colour, chosen export folder (as a security-scoped bookmark), and the number of audiobooks you’ve exported so far are stored in standard macOS preferences inside the app’s sandbox container.</li>
     <li><strong>A Google Books API key, if you add one.</strong> Stored in the same preferences store as above. Not synced anywhere.</li>
-    <li><strong>Diagnostic logs</strong> written to macOS’s unified log via <bdi>os.Logger</bdi>. You can see them in the Console app or with the <bdi>log</bdi> command. They don’t leave your Mac.</li>
+    <li><strong>Your diagnostics choice</strong> (Allow or Not Now), stored with the settings above.</li>
+    <li><strong>Diagnostic logs</strong> written to macOS’s unified log via <bdi>os.Logger</bdi>. You can see them in the Console app or with the <bdi>log</bdi> command. They don’t leave your Mac, and they’re separate from the opt-in crash reports below.</li>
   </ul>
+
+  <h2>Crash reports and usage statistics (only if you allow them)</h2>
+  <p>The first time you open the app, a small card asks whether to share anonymous crash reports and usage statistics, with <strong>Allow</strong> and <strong>Not Now</strong>. Until you choose Allow, nothing is collected or sent. You can change your mind at any time in <strong>Settings ▸ Privacy</strong>.</p>
+  <p>If you allow it, the app uses two Google Firebase services:</p>
+  <ul>
+    <li><strong>Crash reports (Firebase Crashlytics):</strong> the stack trace and app state when the app crashes, the app version, your Mac’s model and macOS version. When an import or export fails, an error category and number (for example <bdi>AVFoundation −11800</bdi>), never the error message, because messages can contain file names, along with the export method and the chapter count.</li>
+    <li><strong>Usage statistics (Google Analytics for Firebase):</strong> counts of actions such as files imported (how many and their formats, like “mp3”), analysis finished, cover art set, metadata look-up used, exports started, finished, failed or cancelled (with the export method, chapter count, a rough book length and a rough export time), the upgrade screen shown, and purchase or restore outcomes. Google Analytics also records standard events such as first launch, sessions and updates, and, if you buy the unlock, a purchase event with the product and its price, never your payment details.</li>
+    <li><strong>A random app-instance ID</strong> created by Firebase for this installation. It isn’t your Apple ID, name, email or advertising identifier, and it’s reset if you turn sharing off.</li>
+    <li><strong>Device information</strong> such as Mac model, macOS version, app version and language, and an <strong>approximate location</strong> (country or city) that Google Analytics derives from your IP address. The app never uses Location Services.</li>
+  </ul>
+  <p>Never sent: your audio, file and folder names, and the book’s title, author, narrator, description and cover art; your name, email, Apple ID or advertising identifier. We don’t attach a user ID, link this data to you, or use it for advertising or tracking.</p>
+  <p>Google processes this data for us as a service provider under the <a href="https://firebase.google.com/terms/data-processing-terms">Firebase Data Processing and Security Terms</a>, possibly on servers outside your country. Google Analytics data sharing with Google is turned off and Google Signals is off, and the app tells Google Analytics to deny advertising storage, ad user data and ad personalization. Firebase deletes the data automatically: Google Analytics event data after 2 months, Crashlytics crash data after 90 days.</p>
 
   <h2>What leaves your Mac, and to whom</h2>
   <p>Audiobook Worm connects only to the following. Each sees your Mac’s IP address, as any website you visit does.</p>
@@ -82,14 +95,15 @@
     <li><strong>Apple’s iTunes Search service</strong> (<bdi>itunes.apple.com</bdi>). When you look up a book, or let the app look one up automatically after you import files, the title you provided (or that the app derived from the file names) is sent to Apple’s public iTunes Search service as a search query. Apple sees the request under <a href="https://www.apple.com/legal/privacy/">Apple’s privacy policy</a>. If you pick a result that has cover art, the picture is then downloaded from Apple’s image servers (<bdi>is*-ssl.mzstatic.com</bdi>).</li>
     <li><strong>Apple’s App Store</strong> (StoreKit). The paywall that offers the one-time Unlimited Exports purchase uses Apple’s standard in-app purchase sheet. Apple handles the payment in full. We never see your Apple ID, name, email, or payment details; Apple only tells the app whether the entitlement is active.</li>
     <li><strong>Google Books</strong> (<bdi>googleapis.com</bdi>), only if you add your own Google Books API key in Settings. Off by default and stays off until you add the key. If you do add it, the title you’re searching for is sent to Google as a search query, in direct response to your action. Google sees the request under <a href="https://policies.google.com/privacy">Google’s privacy policy</a>.</li>
+    <li><strong>Google Firebase</strong> (<bdi>firebaseinstallations.googleapis.com</bdi> and the Crashlytics and Google Analytics endpoints), only if you chose Allow, as described above. Google sees the requests under <a href="https://policies.google.com/privacy">Google’s privacy policy</a>.</li>
   </ul>
 
   <h2>What we don’t do</h2>
   <ul>
     <li>No accounts, sign-ups or cloud sync.</li>
-    <li>No analytics, advertising, tracking or crash-reporting tools, and no data brokers.</li>
-    <li>No third-party SDKs at all. The app links only Apple system frameworks.</li>
-    <li>We don’t sell or share personal data, and the app sends us none.</li>
+    <li>No advertising, no tracking and no data brokers. Crash reports and usage statistics are sent only if you allow them.</li>
+    <li>One third-party SDK: Google Firebase (Crashlytics and Analytics), which stays inactive unless you allow sharing. Everything else is Apple system frameworks.</li>
+    <li>We don’t sell or share personal data.</li>
   </ul>
 
   <h2>If you contact us</h2>
@@ -99,14 +113,15 @@
   <p>Apple runs the Mac App Store and the Macs that Audiobook Worm runs on. Apple handles downloads, ratings, in-app purchase and device data under its own privacy policy. Audiobook Worm itself sends nothing to Apple beyond the iTunes Search queries and the StoreKit calls described above. The Mac App Store may show us totals, such as the number of downloads. If you’ve agreed in System Settings to share analytics with app developers, Apple may share crash reports and usage statistics with us, as that setting describes.</p>
 
   <h2>Children</h2>
-  <p>Audiobook Worm isn’t directed at children, and it collects no data from anyone, children included. The app has no content of its own; what it builds is entirely from files you supply.</p>
+  <p>Audiobook Worm isn’t directed at children. It collects nothing unless the person using it chooses to share anonymous crash reports and usage statistics, and those aren’t linked to a person. The app has no content of its own; what it builds is entirely from files you supply.</p>
 
   <h2>Removing your data</h2>
   <ul>
+    <li>Turn off sharing in <strong>Settings ▸ Privacy</strong>: collection stops immediately, crash reports not yet sent are deleted, and the app-instance ID is reset.</li>
     <li>Clear the Google Books API key in Settings, and no further Google Books queries are made.</li>
     <li>Delete the app, and the preferences and export counter in its sandbox container go with it. Your audio files, project files and exported <bdi>.m4b</bdi> files stay where you saved them, outside the sandbox.</li>
   </ul>
-  <p>Because the app sends us nothing, we hold nothing of yours to show, export or delete, except emails you send us.</p>
+  <p>Crash reports and usage statistics aren’t linked to you, so we can’t find or delete one person’s data on request; Firebase deletes it automatically after the periods above. Apart from that, we hold nothing of yours except emails you send us.</p>
 
   <h2>Your rights</h2>
   <p>If you’re in the UK or the EU, you can ask us what we hold about you and have it corrected or deleted. You can also complain to a data protection authority: in the UK, the Information Commissioner’s Office (<a href="https://ico.org.uk">ico.org.uk</a>).</p>
@@ -122,11 +137,11 @@
 
 <article id="ar" lang="ar" dir="rtl">
   <h1>سياسة الخصوصية لتطبيق <bdi>Audiobook Worm</bdi></h1>
-  <p class="meta">سارية اعتباراً من <bdi>21 تشرين الثاني 2026</bdi>. تشمل هذه السياسة تطبيق <bdi>Audiobook Worm</bdi> للماك.</p>
+  <p class="meta">سارية اعتباراً من <bdi>21 تشرين الثاني 2026</bdi>. آخر تحديث في <bdi>21 تشرين الثاني 2026</bdi> لإضافة تقارير الأعطال وإحصاءات الاستخدام الاختيارية التي لا تعمل إلا بموافقتك. تشمل هذه السياسة تطبيق <bdi>Audiobook Worm</bdi> للماك.</p>
   <p class="lang"><a href="#en" hreflang="en" lang="en" dir="ltr">English</a></p>
 
   <div class="summary">
-    <p><strong>باختصار:</strong> لا يجمع <bdi>Audiobook Worm</bdi> أي بيانات شخصية. لا حسابات ولا تحليلات ولا إعلانات، ولا خادم تابع لنا. ما تستورده يبقى على جهاز الماك. ولا يتصل التطبيق إلا بخدمة بحث <bdi>iTunes</bdi> من Apple حين تطلب منه البحث عن كتاب، وبـ <bdi>App Store</bdi> لعملية الشراء داخل التطبيق لمرة واحدة، و—إذا أضفت مفتاحك الخاص فقط—بـ <bdi>Google Books</bdi>.</p>
+    <p><strong>باختصار:</strong> يبني <bdi>Audiobook Worm</bdi> كتابك الصوتي على جهاز الماك، ولا تغادره ملفاتك الصوتية ولا أسماء الملفات ولا بيانات الكتاب. لا حسابات ولا إعلانات ولا تتبّع، ولا خادم تابع لنا. يتصل التطبيق بخدمة بحث <bdi>iTunes</bdi> من Apple حين تطلب منه البحث عن كتاب، وبـ <bdi>App Store</bdi> لعملية الشراء داخل التطبيق لمرة واحدة، وبـ <bdi>Google Books</bdi> فقط إذا أضفت مفتاحك الخاص، وبـ <bdi>Google Firebase</bdi> فقط إذا اخترت مشاركة تقارير أعطال وإحصاءات استخدام مجهولة الهوية. هذه المشاركة معطّلة حتى تفعّلها بنفسك.</p>
   </div>
 
   <h2>من نحن</h2>
@@ -141,8 +156,21 @@
     <li><strong>الملفات التي تستوردها.</strong> ملفاتك الصوتية وملفات المشاريع (<bdi>.audiobookproj</bdi>) التي تحفظها وملفات <bdi>.m4b</bdi> الناتجة تُقرأ وتُكتب في المواقع التي تختارها. يصل إليها التطبيق عبر مراجع نطاق الأمان (<bdi>security-scoped bookmarks</bdi>)، وهي آلية في <bdi>macOS</bdi> تمنح الوصول إلى الملفات والمجلّدات التي تختارها بعينها دون غيرها.</li>
     <li><strong>الإعدادات وعدّاد التصدير للطبقة المجانية.</strong> لون التمييز الذي تختاره، ومجلّد التصدير الذي تختاره (كمرجع نطاق أمان)، وعدد الكتب الصوتية التي صدّرتها حتى الآن، تُخزَّن جميعها في تفضيلات <bdi>macOS</bdi> القياسية داخل حاوية الصندوق الرملي للتطبيق.</li>
     <li><strong>مفتاح واجهة <bdi>Google Books</bdi>، إن أضفت واحداً.</strong> يُحفظ في مخزن التفضيلات ذاته، ولا يُزامَن مع أي مكان.</li>
-    <li><strong>سجلات التشخيص</strong> تُكتب في سجل <bdi>macOS</bdi> المُوحَّد عبر <bdi>os.Logger</bdi>. يمكنك الاطلاع عليها في تطبيق <bdi>Console</bdi> أو بأمر <bdi>log</bdi>، وهي لا تغادر جهاز الماك.</li>
+    <li><strong>اختيارك بشأن التشخيص</strong> (<bdi>Allow</bdi> أو <bdi>Not Now</bdi>)، ويُحفظ مع الإعدادات المذكورة أعلاه.</li>
+    <li><strong>سجلات التشخيص</strong> تُكتب في سجل <bdi>macOS</bdi> المُوحَّد عبر <bdi>os.Logger</bdi>. يمكنك الاطلاع عليها في تطبيق <bdi>Console</bdi> أو بأمر <bdi>log</bdi>، وهي لا تغادر جهاز الماك، وهي منفصلة عن تقارير الأعطال الاختيارية الموضّحة أدناه.</li>
   </ul>
+
+  <h2>تقارير الأعطال وإحصاءات الاستخدام (فقط إذا سمحت بها)</h2>
+  <p>عند فتح التطبيق أول مرة، تظهر بطاقة صغيرة تسألك عن مشاركة تقارير أعطال وإحصاءات استخدام مجهولة الهوية، مع زرّي <strong><bdi>Allow</bdi></strong> (السماح) و<strong><bdi>Not Now</bdi></strong> (ليس الآن). لا يُجمع شيء ولا يُرسَل حتى تختار السماح، ويمكنك تغيير رأيك في أي وقت من <strong><bdi>Settings ▸ Privacy</bdi></strong>.</p>
+  <p>إذا سمحت بذلك، يستخدم التطبيق خدمتين من <bdi>Google Firebase</bdi>:</p>
+  <ul>
+    <li><strong>تقارير الأعطال (<bdi>Firebase Crashlytics</bdi>):</strong> مسار الاستدعاءات وحالة التطبيق لحظة توقّفه المفاجئ، وإصدار التطبيق، وطراز جهاز الماك وإصدار <bdi>macOS</bdi>. وحين يفشل استيراد أو تصدير، تُرسَل فئة الخطأ ورقمه (مثل <bdi>AVFoundation −11800</bdi>) دون نص رسالة الخطأ أبداً، لأن الرسائل قد تتضمن أسماء ملفات، ومعها طريقة التصدير وعدد الفصول.</li>
+    <li><strong>إحصاءات الاستخدام (<bdi>Google Analytics for Firebase</bdi>):</strong> أعداد إجراءات مثل استيراد الملفات (عددها وصيغها مثل «mp3»)، واكتمال التحليل، وتعيين الغلاف، واستخدام البحث عن البيانات الوصفية، وبدء التصدير أو اكتماله أو فشله أو إلغائه (مع طريقة التصدير وعدد الفصول وطول تقريبي للكتاب ومدة تصدير تقريبية)، وظهور شاشة الترقية، ونتائج الشراء أو الاستعادة. كما تسجّل <bdi>Google Analytics</bdi> أحداثاً قياسية مثل أول تشغيل والجلسات والتحديثات، وإذا اشتريت فتح الميزات، حدث شراء يتضمّن المنتج وسعره دون أي بيانات دفع.</li>
+    <li><strong>معرّف عشوائي لنسخة التطبيق</strong> تُنشئه <bdi>Firebase</bdi> لهذا التثبيت. ليس معرّف <bdi>Apple ID</bdi> ولا اسمك ولا بريدك ولا معرّف الإعلانات، ويُعاد تعيينه إذا أوقفت المشاركة.</li>
+    <li><strong>معلومات الجهاز</strong> مثل طراز الماك وإصدار <bdi>macOS</bdi> وإصدار التطبيق واللغة، و<strong>موقع تقريبي</strong> (الدولة أو المدينة) تستنتجه <bdi>Google Analytics</bdi> من عنوان <bdi>IP</bdi>. لا يستخدم التطبيق خدمات الموقع أبداً.</li>
+  </ul>
+  <p>لا يُرسَل أبداً: ملفاتك الصوتية، وأسماء الملفات والمجلّدات، وعنوان الكتاب ومؤلّفه ومؤدّيه ووصفه وغلافه، ولا اسمك ولا بريدك ولا معرّف <bdi>Apple ID</bdi> ولا معرّف الإعلانات. لا نُرفق معرّف مستخدم، ولا نربط هذه البيانات بك، ولا نستخدمها للإعلانات أو التتبّع.</p>
+  <p>تعالج Google هذه البيانات نيابةً عنا بصفتها مزوّد خدمة وفق <a href="https://firebase.google.com/terms/data-processing-terms" dir="ltr">Firebase Data Processing and Security Terms</a>، وقد يجري ذلك على خوادم خارج بلدك. مشاركة بيانات <bdi>Google Analytics</bdi> مع Google معطّلة، و<bdi>Google Signals</bdi> معطّلة، ويطلب التطبيق من <bdi>Google Analytics</bdi> رفض تخزين الإعلانات وبيانات المستخدم الإعلانية وتخصيص الإعلانات. وتحذف <bdi>Firebase</bdi> البيانات تلقائياً: بيانات أحداث <bdi>Google Analytics</bdi> بعد شهرين، وبيانات أعطال <bdi>Crashlytics</bdi> بعد 90 يوماً.</p>
 
   <h2>ما يغادر جهاز الماك، وإلى أين</h2>
   <p>لا يتصل <bdi>Audiobook Worm</bdi> إلا بما يلي، وكلٌّ منها يرى عنوان <bdi>IP</bdi> الخاص بالماك، كما يراه أي موقع ويب تزوره:</p>
@@ -150,14 +178,15 @@
     <li><strong>خدمة بحث <bdi>iTunes</bdi> من Apple</strong> (<bdi>itunes.apple.com</bdi>). حين تبحث عن كتاب، أو تسمح للتطبيق بالبحث عنه تلقائياً بعد استيراد الملفات، يُرسَل العنوان الذي قدّمته (أو الذي استخلصه التطبيق من أسماء الملفات) إلى خدمة بحث <bdi>iTunes</bdi> العامة كاستعلام بحث. ترى Apple الطلب وفق <a href="https://www.apple.com/legal/privacy/" dir="ltr">سياسة خصوصية Apple</a>. وإن اخترت نتيجةً تحتوي على فن غلاف، تُحمَّل الصورة من خوادم الصور الخاصة بـ Apple (<bdi>is*-ssl.mzstatic.com</bdi>).</li>
     <li><strong><bdi>App Store</bdi> من Apple</strong> (<bdi>StoreKit</bdi>). تستخدم شاشة الشراء التي تعرض عملية "التصدير غير المحدود" لمرة واحدة ورقةَ الشراء داخل التطبيق القياسية من Apple. تعالج Apple عملية الدفع كاملةً. لا نرى أبداً معرّف Apple ID الخاص بك ولا اسمك ولا بريدك الإلكتروني ولا بيانات الدفع؛ تُبلّغ Apple التطبيق فقط ما إذا كان الاستحقاق نشطاً.</li>
     <li><strong><bdi>Google Books</bdi></strong> (<bdi>googleapis.com</bdi>)، وذلك فقط إذا أضفت مفتاح واجهة <bdi>Google Books</bdi> الخاص بك في الإعدادات. الميزة معطّلة افتراضياً وتبقى كذلك حتى تضيف المفتاح. إذا أضفته، يُرسَل العنوان الذي تبحث عنه إلى Google كاستعلام بحث، استجابةً مباشرة لعمليتك. ترى Google الطلب وفق <a href="https://policies.google.com/privacy" dir="ltr">سياسة خصوصية Google</a>.</li>
+    <li><strong><bdi>Google Firebase</bdi></strong> (<bdi>firebaseinstallations.googleapis.com</bdi> وخوادم <bdi>Crashlytics</bdi> و<bdi>Google Analytics</bdi>)، وذلك فقط إذا اخترت السماح، كما هو موضّح أعلاه. ترى Google الطلبات وفق <a href="https://policies.google.com/privacy" dir="ltr">سياسة خصوصية Google</a>.</li>
   </ul>
 
   <h2>ما لا نفعله</h2>
   <ul>
     <li>لا حسابات ولا تسجيل ولا مزامنة سحابية.</li>
-    <li>لا أدوات للتحليلات أو الإعلانات أو التتبّع أو تقارير الأعطال، ولا تعامل مع وسطاء البيانات.</li>
-    <li>لا حزم خارجية من أي نوع؛ يربط التطبيق أُطر عمل Apple النظامية فقط.</li>
-    <li>لا نبيع البيانات الشخصية ولا نشاركها، ولا يرسل إلينا التطبيق شيئاً منها.</li>
+    <li>لا إعلانات ولا تتبّع ولا تعامل مع وسطاء البيانات. ولا تُرسَل تقارير الأعطال وإحصاءات الاستخدام إلا إذا سمحت بها.</li>
+    <li>حزمة خارجية واحدة فقط: <bdi>Google Firebase</bdi> (<bdi>Crashlytics</bdi> و<bdi>Analytics</bdi>)، وتبقى معطّلة ما لم تسمح بالمشاركة. وكل ما عداها أُطر عمل Apple النظامية.</li>
+    <li>لا نبيع البيانات الشخصية ولا نشاركها.</li>
   </ul>
 
   <h2>إذا راسلتنا</h2>
@@ -167,14 +196,15 @@
   <p>تدير Apple متجر <bdi>Mac App Store</bdi> والأجهزة التي يعمل عليها <bdi>Audiobook Worm</bdi>. تتولى Apple التنزيلات والتقييمات والشراء داخل التطبيق وبيانات الجهاز بموجب سياسة الخصوصية الخاصة بها. <bdi>Audiobook Worm</bdi> نفسه لا يرسل إلى Apple شيئاً سوى استعلامات بحث <bdi>iTunes</bdi> ونداءات <bdi>StoreKit</bdi> الموضّحة أعلاه. قد يعرض علينا <bdi>Mac App Store</bdi> أرقاماً إجمالية مثل عدد التنزيلات. وإن وافقت في «إعدادات النظام» على مشاركة التحليلات مع مطوّري التطبيقات، فقد تشاركنا Apple تقارير الأعطال وإحصاءات الاستخدام، على النحو الموضّح في ذلك الإعداد.</p>
 
   <h2>الأطفال</h2>
-  <p><bdi>Audiobook Worm</bdi> غير موجّه للأطفال، ولا يجمع بيانات من أحد بمن فيهم الأطفال. ولا يتضمن التطبيق محتوى خاصاً به؛ فما يبنيه مصدره بالكامل الملفات التي تقدّمها أنت.</p>
+  <p><bdi>Audiobook Worm</bdi> غير موجّه للأطفال. لا يجمع شيئاً ما لم يختر مستخدمه مشاركة تقارير أعطال وإحصاءات استخدام مجهولة الهوية، وهذه لا ترتبط بشخص بعينه. ولا يتضمن التطبيق محتوى خاصاً به؛ فما يبنيه مصدره بالكامل الملفات التي تقدّمها أنت.</p>
 
   <h2>حذف بياناتك</h2>
   <ul>
+    <li>أوقف المشاركة من <strong><bdi>Settings ▸ Privacy</bdi></strong>: يتوقف الجمع فوراً، وتُحذف تقارير الأعطال التي لم تُرسَل بعد، ويُعاد تعيين معرّف نسخة التطبيق.</li>
     <li>امسح مفتاح واجهة <bdi>Google Books</bdi> في الإعدادات فلا تُرسَل أي استعلامات أخرى إلى <bdi>Google Books</bdi>.</li>
     <li>احذف التطبيق فتُحذف معه التفضيلات وعدّاد التصدير داخل حاوية الصندوق الرملي. أما ملفاتك الصوتية وملفات المشاريع وملفات <bdi>.m4b</bdi> المُصدَّرة فتبقى حيث حفظتَها خارج الصندوق الرملي.</li>
   </ul>
-  <p>ولأن التطبيق لا يرسل إلينا شيئاً، فليس لدينا من بياناتك ما نعرضه أو نصدّره أو نحذفه، باستثناء الرسائل التي ترسلها إلينا.</p>
+  <p>لا ترتبط تقارير الأعطال وإحصاءات الاستخدام بك، لذا لا نستطيع العثور على بيانات شخص بعينه أو حذفها عند الطلب، وتحذفها <bdi>Firebase</bdi> تلقائياً بعد المدد المذكورة أعلاه. وفيما عدا ذلك، ليس لدينا من بياناتك شيء سوى الرسائل التي ترسلها إلينا.</p>
 
   <h2>حقوقك</h2>
   <p>إن كنت في المملكة المتحدة أو الاتحاد الأوروبي، يحق لك أن تسألنا عمّا نحتفظ به عنك، وأن تطلب تصحيحه أو حذفه. ويحق لك أيضاً تقديم شكوى إلى الجهة المختصة بحماية البيانات، وهي في المملكة المتحدة مكتب مفوّض المعلومات (ICO) ‏(<a href="https://ico.org.uk" dir="ltr">ico.org.uk</a>).</p>
