@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audiobook Worm – Support</title>
+<style>
+  :root { --bg: #ffffff; --fg: #1a1c1e; --muted: #5b5f66; --rule: #e1e3e6; --accent: #006684; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #111417; --fg: #e1e2e6; --muted: #a3a8b0; --rule: #2c3035; --accent: #6fd3ff; }
+  }
+  body { background: var(--bg); color: var(--fg); margin: 0;
+         font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Arabic", sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 1.8rem; margin: 0 0 16px; }
+  h2 { font-size: 1.2rem; margin: 28px 0 8px; }
+  a { color: var(--accent); }
+  hr { border: 0; border-top: 1px solid var(--rule); margin: 48px 0; }
+  section[dir="rtl"] { text-align: right; }
+</style>
+</head>
+<body>
+<main>
+<section lang="en">
+<h1>Audiobook Worm – Support</h1>
+<p>Audiobook Worm is a Mac app that merges MP3, AAC, AIFF and WAV files into a single .m4b audiobook with chapter markers, embedded metadata (title, author, narrator, year, description) and cover art, ready to play in Apple Books.</p>
+
+<h2>Contact</h2>
+<p>For questions, problems or suggestions, email <a href="mailto:support@timsa7.com">support@timsa7.com</a>. Please include your Mac model, the macOS version, and the app version from About Audiobook Worm.</p>
+
+<h2>Common questions</h2>
+<p><strong>Where does the metadata come from?</strong> Book titles, authors, narrators, years and descriptions are looked up on Apple's iTunes Search service when you tap the Lookup button or when the app auto-fills metadata after you import files. Cover art is downloaded from Apple's own image servers. If you add a Google Books API key in Settings, Google Books is used as a secondary source. See the <a href="privacy-policy">privacy policy</a>.</p>
+<p><strong>Are my audio files sent anywhere?</strong> No. They're read on your Mac through security-scoped bookmarks you grant, and the finished .m4b is written back to a folder you choose. The app has no server of its own and nothing phones home.</p>
+<p><strong>Why did the paywall appear?</strong> Audiobook Worm is free for the first 10 exports. After that a one-time $4.99 purchase unlocks unlimited exports — no subscription, no recurring fees. If you've already purchased, tap Restore Purchases in the paywall; your Apple ID handles it from there.</p>
+<p><strong>The export is slow.</strong> If all your files are AAC and share a sample rate, Audiobook Worm uses a lossless passthrough that takes about 4 seconds for a 16-hour book. MP3, AIFF, WAV, or mixed files go through an AVFoundation re-encode which is slower — a 16-hour book is around 3 minutes.</p>
+<p><strong>Chapters are in the wrong order.</strong> Rename your source files so they sort by filename (01, 02, …). Audiobook Worm orders chapters using the same locale-aware sort Finder uses.</p>
+<p><strong>The finished book shows up in Music, not Books.</strong> This shouldn't happen — Audiobook Worm always sets the correct media-type flag so Apple Books picks it up. If it does happen, let us know with the file and we'll look into it.</p>
+</section>
+
+<hr>
+
+<section lang="ar" dir="rtl">
+<h1>Audiobook Worm – الدعم</h1>
+<p>Audiobook Worm تطبيق للماك يدمج ملفات MP3 وAAC وAIFF وWAV في كتاب صوتي واحد بصيغة .m4b، مع علامات الفصول وبيانات وصفية مدمجة (العنوان، المؤلّف، المُؤدّي، السنة، الوصف) وفن الغلاف، جاهز للتشغيل في Apple Books.</p>
+
+<h2>التواصل</h2>
+<p>للأسئلة أو المشكلات أو الاقتراحات، راسلنا على <a href="mailto:support@timsa7.com" dir="ltr">support@timsa7.com</a>. يرجى ذكر طراز جهاز الماك وإصدار macOS وإصدار التطبيق من «حول Audiobook Worm».</p>
+
+<h2>أسئلة شائعة</h2>
+<p><strong>من أين تأتي البيانات الوصفية؟</strong> عناوين الكتب والمؤلّفون والمُؤدّون والسنوات والأوصاف تُبحث في خدمة بحث iTunes من Apple عندما تضغط زر البحث أو عندما يملأ التطبيق البيانات تلقائياً بعد استيراد الملفات. يُحمَّل فن الغلاف من خوادم الصور الخاصة بـ Apple. إن أضفت مفتاح واجهة Google Books في الإعدادات، تُستخدم Google Books كمصدر ثانوي. راجع <a href="privacy-policy">سياسة الخصوصية</a>.</p>
+<p><strong>هل تُرسَل ملفاتي الصوتية إلى أي جهة؟</strong> لا. تُقرأ على جهاز الماك عبر مراجع نطاق الأمان التي تمنحها، ويُكتب ملف .m4b الناتج في مجلّد تختاره. ليس للتطبيق خادم خاص به ولا يرسل أي شيء إلى أي جهة.</p>
+<p><strong>لماذا ظهرت شاشة الشراء؟</strong> Audiobook Worm مجاني لأول 10 تصديرات. بعدها تفتح عملية شراء واحدة بقيمة $4.99 التصدير غير المحدود — بلا اشتراك ولا رسوم متكرّرة. إن سبق أن اشتريت، اضغط «استعادة المشتريات» (Restore Purchases) في شاشة الشراء؛ ويتولى معرّف Apple ID الخاص بك الباقي.</p>
+<p><strong>التصدير بطيء.</strong> إذا كانت جميع ملفاتك بصيغة AAC وبمعدّل أخذ عيّنات واحد، يستخدم Audiobook Worm تمريراً بلا خسارة يستغرق نحو 4 ثوانٍ لكتاب مدّته 16 ساعة. أما ملفات MP3 أو AIFF أو WAV أو المختلطة فتمرّ عبر إعادة ترميز AVFoundation وهي أبطأ — كتاب بمدّة 16 ساعة يستغرق نحو 3 دقائق.</p>
+<p><strong>الفصول بترتيب خاطئ.</strong> أعِد تسمية ملفات المصدر لتُرتَّب حسب اسم الملف (01، 02، …). يرتّب Audiobook Worm الفصول باستخدام الترتيب نفسه الذي يستخدمه Finder، الحسّاس للغة.</p>
+<p><strong>الكتاب الناتج يظهر في Music لا في Books.</strong> هذا لا يُفترض أن يحدث — فـ Audiobook Worm يضبط دائماً راية نوع الوسائط الصحيحة ليلتقطه Apple Books. إن حدث ذلك، أخبرنا مع الملف ونتتبع السبب.</p>
+</section>
+</main>
+</body>
+</html>
